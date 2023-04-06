@@ -1,0 +1,103 @@
+{% extends 'user/commonbase.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+    /* Image Upload */
+
+    .image-upload>input {
+        display: none;
+    }
+
+    #img {
+
+        height: 150px;
+        width: 150px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+
+    article,
+    aside,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    /* Image upload */
+</style>
+
+<!-- Booking -->
+<section class="w3l-contact pb-5" id="contact">
+    <div class="container pb-md-5 pb-4">
+        <div class="row contact-block">
+            <div class="col-lg-7 contact-right mt-5">
+                <h3 class="title-style mb-4 pb-2">Booking</h3>
+                {%for i in abc %}
+                <form method="post" class="signin-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-grids">
+                        <input type="text" name="Name" id="w3lName" value="{{i.name}}" placeholder="Your Name*"
+                            class="contact-input" required="" readonly />
+
+                        <input type="email" name="Email" value="{{i.email}}"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="w3lSender" placeholder="Your Email*"
+                            class="contact-input" required="" readonly />
+
+                        <input type="text" name="Number" value="{{i.phone}}" pattern="[9876][0-9]{9}" maxlength="10"
+                            id="w3lSubect" placeholder="Phone Number*" class="contact-input" required="" readonly />
+
+                        <input type="text" name="Category" value="{{i.category}}" id="w3lSubect"
+                            placeholder="Experience*" class="contact-input" required="" readonly />
+
+                        <input type="text" name="Wages" value="{{i.wages}}" id="w3lSubect"
+                            placeholder="Experience*" class="contact-input" required="" readonly />
+
+                        <input type="text" name="Location" id="w3lSubect" value="{{i.location}}" placeholder="Location*"
+                            class="contact-input" required="" readonly />
+
+                        <label>Starting Date</label>
+                        <input type="date" name="Startdate" min="{{today}}" id="w3lSubect" placeholder="Location*"
+                            class="contact-input" required="" />
+
+                        <label>Ending Date</label>
+                        <input type="date" name="Enddate" min="{{today}}" id="w3lSubect" placeholder="Location*"
+                            class="contact-input" required="" />
+
+
+                    </div>
+                    <button class="btn btn-style mt-sm-3" style="margin-left: 80%;">Book</button>
+                </form>
+                {% endfor %}
+            </div>
+            <div class="col-lg-5 mt-lg-0 mt-5 pl-xl-5 pl-lg-4">
+                <div class="map-iframe" style="margin-top:30%; width: 140%; margin-left: 4%;">
+                    <img class="img-fluid" src="{% static 'assets/images/construction-worker.png' %}" alt=" ">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //Booking -->
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#img").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+{% endblock %}

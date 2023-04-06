@@ -1,0 +1,81 @@
+{% extends 'user/commonbase.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+    }
+
+    #img {
+        width: 40px;
+        height: 40px;
+    }
+</style>
+
+<!-- View Booking -->
+<section class="w3l-team" id="team">
+    <div class="team-block py-5">
+        <div class="container py-lg-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">My Payment</h3>
+
+                    </div>
+                </div>
+            </div>
+
+            <table id="myTable" style="margin-left: 1%; margin-top: 4%;">
+                <tr class="header">
+
+                    <th>Name</th>
+                    <th>Worker Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                    <th>Status</th>
+                    <!-- <th>Action</th> -->
+
+                    {% for i in abc %}
+                <tr>
+                    <td>{{i.usrid.name}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.category}}</td>
+                    <td>{{i.wages}}</td>
+                    <td>{{i.startingdate}}</td>
+                    <td>{{i.endingdate}}</td>
+                    <td>{{i.status}}</td>
+                    <!-- <td><a href="/cancelbooking?id={{i.id}}" class="btn btn-danger"
+                        style="margin-top: 7%;">Delete</a></td> -->
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</section>
+
+<!-- //View Booking -->
+{% endblock %}

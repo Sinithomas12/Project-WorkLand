@@ -1,0 +1,75 @@
+{% extends 'worker/commonbase.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Image Upload */
+
+    .image-upload>input {
+        display: none;
+    }
+
+    #img {
+        cursor: pointer;
+        height: 150px;
+        width: 150px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+
+    article,
+    aside,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    /* Image upload */
+</style>
+
+<!-- Registration -->
+<section class="w3l-contact pb-5" id="contact">
+    <div class="container pb-md-5 pb-4">
+        <div class="row contact-block">
+            <div class="col-lg-7 contact-right mt-5">
+                <h3 class="title-style mb-4 pb-2">Add Feedback</h3>
+                <form method="post" class="signin-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-input">
+                        <textarea name="Feedback" id="w3lMessage" placeholder="Type your Feedback here*"
+                            required="" type="text"></textarea>
+                    </div>
+                    <button class="btn btn-style mt-sm-3" style="margin-left: 80%;">Submit</button>
+                </form>
+
+            </div>
+            <div class="col-lg-5 mt-lg-0 mt-5 pl-xl-5 pl-lg-4">
+                <div class="map-iframe" style="margin-top: 20%; width: 40%; margin-left: 25%;">
+                    <img class="img-fluid" src="{% static 'assets/images/feedback.png' %}" alt=" ">
+                </div>
+            </div>
+        </div>
+</section>
+<!-- //Registration -->
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#img").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+{% endblock %}

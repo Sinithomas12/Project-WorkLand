@@ -1,0 +1,39 @@
+{% extends 'admin/commonbase.html' %}
+{% load static %}
+{% block content %}
+
+<!-- user -->
+<section class="w3l-team" id="team" >
+    <div class="team-block py-5" >
+        <div class="container py-lg-5" >
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8">
+                    <div class="section-heading mb-sm-5 mb-4">
+                        <h3 class="title-style mb-2">View Category</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" >
+                {%for i in abc %}
+                <div class="col-lg-4 col-sm-6" style="margin-top: 5%;">
+                    <div class="box16">
+                        <a href="#url"><img src="/static/assets/image/{{i.image}}" alt=""
+                                class="img-fluid img-responsive" /></a>
+                        <div class="box-content">
+                            <h3 class="title"><a href="#url">{{i.category}}</a></h3>
+                        
+                    
+                            <a href="/deletecategory?id={{i.id}}" class="btn btn-danger"
+                                style="margin-top: 7%;">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //user -->
+
+{% endblock %}

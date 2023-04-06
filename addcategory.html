@@ -1,0 +1,85 @@
+{% extends 'admin/commonbase.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Image Upload */
+
+    .image-upload>input {
+        display: none;
+    }
+
+    #img {
+        cursor: pointer;
+        height: 150px;
+        width: 150px;
+        padding: 10px;
+        border-radius: 100px;
+    }
+
+    article,
+    aside,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+        display: block;
+    }
+
+    /* Image upload */
+</style>
+<!-- contact -->
+<section class="w3l-contact pb-5" id="contact">
+    <div class="container pb-md-5 pb-4">
+        <div class="row contact-block">
+            <div class="col-lg-7 contact-right mt-5" >
+                <h3 class="title-style mb-4 pb-2" >Add Category</h3>
+                <form  method="post" class="signin-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="image-upload text-center" style="margin-bottom:30px; margin-right: 500px;">
+                        <label for="file-input">
+                            <img id="img" src="/static/assets/image/up-arrows.png" alt="Upload Image"
+                                style="margin: auto; margin-right: 100%;" />
+                        </label>
+
+                        <p
+                            style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-top: -2%; margin-left: -4%;">
+                            Upload Image</p>
+
+                        <input id="file-input" onchange="readURL(this)" name="image" type="file" />
+                    </div>
+                    <div class="input-grids" style="margin-top: 10%;">
+                        <input type="text" name="Category" id="w3lSender" placeholder="Add Category*"
+                            class="contact-input" required="" />
+                    </div>
+                    <button class="btn btn-style mt-sm-3" style="margin-left: 80%;">Add</button>
+                </form>
+            </div>
+            <div class="col-lg-5 mt-lg-0 mt-5 pl-xl-5 pl-lg-4">
+                <div class="map-iframe" style="margin-top: 35%; width: 60%; margin-left: 12%;">
+                    <img class="img-fluid" src="{% static 'assets/images/application.png' %}" alt=" ">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //contact -->
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#img").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+{% endblock %}
